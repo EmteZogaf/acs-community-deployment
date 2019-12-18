@@ -1,9 +1,12 @@
 # Defines the deployment for the transform-misc transformer app
 # Details: https://git.alfresco.com/Repository/alfresco-docker-transformers
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ template "content-services.shortname" . }}-transform-misc
+  selector:
+    matchLabels:
+      app: {{ template "content-services.shortname" . }}-transform-misc
   labels:
     app: {{ template "content-services.shortname" . }}-transform-misc
     chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}

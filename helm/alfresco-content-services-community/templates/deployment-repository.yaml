@@ -1,8 +1,11 @@
 # Defines the deployment for the alfresco content repository app
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ template "content-services.shortname" . }}-repository
+  selector:
+    matchLabels:
+      app: {{ template "content-services.shortname" . }}-repository 
   labels:
     app: {{ template "content-services.shortname" . }}-repository
     chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
